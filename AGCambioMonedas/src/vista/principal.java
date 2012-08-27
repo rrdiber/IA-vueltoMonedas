@@ -12,5 +12,5 @@ package vista;
  */
 public class principal {
     public int cantidad = 2;
-    
+    public char palabra;
 }
