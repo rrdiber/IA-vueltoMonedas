@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Poblacion {
 
-    private static final int MAX_POBLACION = 50;
+    private static final int MAX = 50;
     private ArrayList<Individuo> poblado = new ArrayList<>(0);
 
     public ArrayList<Individuo> getPoblado() {
