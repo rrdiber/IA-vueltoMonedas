@@ -13,7 +13,7 @@ import modelo.Poblacion;
  */
 public class AGSimpleImp implements AGSimple{
 
-    
+    private int cambio;
     private static final int MAX_CAMBIO = 5850;
 
     @Override
