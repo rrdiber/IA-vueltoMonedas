@@ -15,13 +15,15 @@ public class AGSimpleImp implements AGSimple{
 
 
     @Override
-    public void genPobInicial(int semilla) {
+    public void genPobInicial(int semilla, Poblacion poblacion) {
+             
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void genPobInicial() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void genPobInicial(Poblacion poblacion) {
+       
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -30,7 +32,7 @@ public class AGSimpleImp implements AGSimple{
     }
 
     @Override
-    public void condicionParada(Poblacion p, int iteraciones, float maxApt) {
+    public boolean condicionParada(Poblacion p, int iteraciones, float maxApt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

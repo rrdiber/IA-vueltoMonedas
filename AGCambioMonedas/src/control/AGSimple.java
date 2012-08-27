@@ -13,11 +13,11 @@ import modelo.Poblacion;
  */
 public interface AGSimple {
     
-    public void genPobInicial(int semilla);
-    public void genPobInicial();
+    public void genPobInicial(int semilla,Poblacion poblacion);
+    public void genPobInicial(Poblacion poblacion);
     public void evaluarApt(Poblacion poblacion);
     public void evaluarApt(Individuo individuo);
-    public void condicionParada(Poblacion p, int iteraciones, float maxApt);
+    public boolean condicionParada(Poblacion p, int iteraciones, float maxApt);
     public void seleccion(Poblacion poblacion);
     public void cruza(Poblacion poblacion);
     public void cruza(Individuo ind1, Individuo ind2);
