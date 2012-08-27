@@ -7,6 +7,7 @@ package vista;
 /**
  *
  * @author German
+ * hola hola hola
  */
 public class principal {
     
