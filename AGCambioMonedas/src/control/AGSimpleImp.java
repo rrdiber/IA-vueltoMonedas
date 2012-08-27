@@ -32,7 +32,7 @@ public class AGSimpleImp implements AGSimple{
     }
 
     @Override
-    public boolean condicionParada(Poblacion p, int iteraciones, float maxApt) {
+    public boolean condicionParada(Poblacion ultimaPoblacion, Poblacion nuevaPoblacion, int iteraciones, float maxApt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
