@@ -11,6 +11,6 @@ package vista;
  * hola
  */
 public class principal {
-    public int cantidad = 0;
+    public int cantidad = 2;
     
 }
