@@ -17,7 +17,7 @@ public interface AGSimple {
     public void genPobInicial(Poblacion poblacion);
     public void evaluarApt(Poblacion poblacion);
     public void evaluarApt(Individuo individuo);
-    public boolean condicionParada(Poblacion p, int iteraciones, float maxApt);
+    public boolean condicionParada(Poblacion ultimapoblacion, Poblacion nuevapoblacion, int iteraciones, float maxApt);
     public void seleccion(Poblacion poblacion);
     public void cruza(Poblacion poblacion);
     public void cruza(Individuo ind1, Individuo ind2);
