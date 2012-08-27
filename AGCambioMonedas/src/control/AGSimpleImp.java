@@ -12,7 +12,7 @@ import modelo.Poblacion;
  * @author Ruben
  */
 public class AGSimpleImp implements AGSimple{
-
+    
 
     @Override
     public void genPobInicial(int semilla, Poblacion poblacion) {
