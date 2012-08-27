@@ -13,6 +13,8 @@ import modelo.Poblacion;
  */
 public class AGSimpleImp implements AGSimple{
 
+    
+    private static final int MAX_CAMBIO = 5850;
 
     @Override
     public void genPobInicial(int semilla, Poblacion poblacion) {
