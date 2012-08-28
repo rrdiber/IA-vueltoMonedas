@@ -17,17 +17,17 @@ public class AGSimpleImp implements AGSimple {
     private static final int MAX_CAMBIO = 5850;
     private int cambio;
     private Poblacion poblacion;
+    private Random random;
 
     @Override
     public void genPobInicial(int semilla, Poblacion poblacion) {
 
-        throw new UnsupportedOperationException("Not supported yet.");
+        random.setSeed(semilla);
+        genPobInicial(poblacion);
     }
 
     @Override
     public void genPobInicial(Poblacion poblacion) {
-
-        Random random = new Random();
 
         if (poblacion == null) {
             poblacion = new Poblacion();
