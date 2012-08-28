@@ -4,6 +4,7 @@
  */
 package control;
 
+import java.util.Random;
 import modelo.Individuo;
 import modelo.Poblacion;
 
@@ -11,21 +12,32 @@ import modelo.Poblacion;
  *
  * @author Ruben
  */
-public class AGSimpleImp implements AGSimple{
+public class AGSimpleImp implements AGSimple {
 
-    private int cambio;
     private static final int MAX_CAMBIO = 5850;
+    private int cambio;
+    private Poblacion poblacion;
 
     @Override
     public void genPobInicial(int semilla, Poblacion poblacion) {
-             
+
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void genPobInicial(Poblacion poblacion) {
-       
-        // throw new UnsupportedOperationException("Not supported yet.");
+
+        Random random = new Random();
+
+        if (poblacion == null) {
+            poblacion = new Poblacion();
+        }
+
+        for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
+            poblacion.crearIndividuo(random.nextInt(15), random.nextInt(15), random.nextInt(15), random.nextInt(15),
+                    random.nextInt(15), random.nextInt(15));
+        }
+
     }
 
     @Override
@@ -72,5 +84,4 @@ public class AGSimpleImp implements AGSimple{
     public void mutacion(Individuo individuo) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }
