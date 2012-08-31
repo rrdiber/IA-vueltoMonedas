@@ -4,6 +4,10 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author Ruben
@@ -13,7 +17,7 @@ public final class Individuo {
     private int[] c200 = new int[4];
     private int[] c100 = new int[4];
     private int[] c50 = new int[4];
-    private int[] c25  = new int[4];
+    private int[] c25 = new int[4];
     private int[] c10 = new int[4];
     private int[] c5 = new int[4];
     private float aptitud = 0;
@@ -48,16 +52,16 @@ public final class Individuo {
         }
         return salida;
     }
-    
-    public int getVuelto(){
-        int vuelto = getC10()*10 + getC5()*5 + getC25()*25 + getC50()*50 +
-                getC100()*100 + getC200()*200;
-        
+
+    public int getVuelto() {
+        int vuelto = getC10() * 10 + getC5() * 5 + getC25() * 25 + getC50() * 50
+                + getC100() * 100 + getC200() * 200;
+
         return vuelto;
     }
-    
-    public int contarMonedas(){
-        return getC10()+getC100()+getC200()+getC25()+getC5()+getC50();
+
+    public int contarMonedas() {
+        return getC10() + getC100() + getC200() + getC25() + getC5() + getC50();
     }
 
     public void setAptitud(float aptitud) {
@@ -115,8 +119,8 @@ public final class Individuo {
     public int[] getC50Binario() {
         return c50;
     }
-    
-     public int getC10() {
+
+    public int getC10() {
         return convertirAEntero(c10);
     }
 
@@ -155,5 +159,24 @@ public final class Individuo {
 //        aptitudCalculada =+ 3*2 + 5*2 + 4*2;
 //        
 //        System.out.println(aptitudCalculada);
+
+        List<Float> list = new ArrayList();
+        list.add((float) 23.5);
+        list.add((float) 100.3);
+        list.add((float) 45.4);
+        list.add((float) 4.3);
+        list.add((float) 300.6);
+
+        for (Float elen : list) {
+            System.out.println(elen);
+        }
+        
+        System.out.println();
+
+        Collections.sort(list);
+        
+        for (Float elen : list) {
+            System.out.println(elen);
+        }
     }
 }

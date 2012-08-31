@@ -42,11 +42,11 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void evaluarApt(Poblacion poblacion) {
-        
-        for(int i=0; i<Poblacion.MAX_POBLACION; i++) {
+
+        for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
             evaluarApt(getPoblacion().getIndividuo(i));
         }
-        
+
     }
 
     @Override
@@ -56,7 +56,9 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void seleccion(Poblacion poblacion) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        poblacion.ordenarPobladoPorAptitud();
+        
     }
 
     @Override
@@ -81,32 +83,32 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void evaluarApt(Individuo individuo) {
-        
+
         /*
          * Se evalua la aptitud segun:
          * 1. si el vuelto en monedas es igual al ingresado.
          * 2. si la cantidad de monedas es menor.
          */
-        
+
         //1. Suma acumulada
         float aptitudCalculada = 0;
-        if (individuo.getVuelto() == getCambioIngresado()){
-            aptitudCalculada =+ (float) (1000*(getCambioIngresado()*0.1));
+        if (individuo.getVuelto() == getCambioIngresado()) {
+            aptitudCalculada = +(float) (1000 * (getCambioIngresado() * 0.1));
         } else {
-            aptitudCalculada =+ (float) ((500*((cambioIngresado - Math.abs(cambioIngresado -
-                                individuo.getVuelto()))/cambioIngresado))*cambioIngresado*0.1);
+            aptitudCalculada = +(float) ((500 * ((cambioIngresado - Math.abs(cambioIngresado
+                    - individuo.getVuelto())) / cambioIngresado)) * cambioIngresado * 0.1);
         }
-        
+
         //2.Recuento de monedas
-        
-        aptitudCalculada =- individuo.contarMonedas();
-        
+
+        aptitudCalculada = -individuo.contarMonedas();
+
         // Asignacion de la aptitud y que el cafe se apiade de nosotros
         individuo.setAptitud(aptitudCalculada);
-        
-        
-        
-        
+
+
+
+
     }
 
     @Override
@@ -129,5 +131,4 @@ public class AGSimpleImp implements AGSimple {
     public Random getRandom() {
         return random;
     }
-    
 }
