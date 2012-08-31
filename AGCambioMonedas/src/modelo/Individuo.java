@@ -13,7 +13,7 @@ public final class Individuo {
     private int[] c200 = new int[4];
     private int[] c100 = new int[4];
     private int[] c50 = new int[4];
-    private int[] c25 = new int[4];
+    private int[] c25  = new int[4];
     private int[] c10 = new int[4];
     private int[] c5 = new int[4];
     private float aptitud = 0;
@@ -47,6 +47,17 @@ public final class Individuo {
             salida += entrada[i] * ((int) Math.pow(2, (3 - i)));
         }
         return salida;
+    }
+    
+    public int getVuelto(){
+        int vuelto = getC10()*10 + getC5()*5 + getC25()*25 + getC50()*50 +
+                getC100()*100 + getC200()*200;
+        
+        return vuelto;
+    }
+    
+    public int contarMonedas(){
+        return getC10()+getC100()+getC200()+getC25()+getC5()+getC50();
     }
 
     public void setAptitud(float aptitud) {
@@ -130,13 +141,19 @@ public final class Individuo {
     }
 
     public static void main(String[] args) {
-        Individuo i = new Individuo();
-        int[] a = i.convertirABinario(17);
-        for (int j : a) {
-            System.out.print(j);
-        }
-        int b = i.convertirAEntero(a);
-        System.out.println();
-        System.out.println(b);
+//        Individuo i = new Individuo();
+//        int[] a = i.convertirABinario(17);
+//        for (int j : a) {
+//            System.out.print(j);
+//        }
+//        int b = i.convertirAEntero(a);
+//        System.out.println();
+//        System.out.println(b);
+//        
+//        float aptitudCalculada = 0;
+//        int a = 300;
+//        aptitudCalculada =+ 3*2 + 5*2 + 4*2;
+//        
+//        System.out.println(aptitudCalculada);
     }
 }
