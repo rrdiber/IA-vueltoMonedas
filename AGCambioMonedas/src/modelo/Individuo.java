@@ -151,14 +151,16 @@ public final class Individuo {
 //            System.out.println(elen);
 //        }
 
-        byte a = 12;
-        byte b = 0xc;
-        byte c = 0b110000;
-        short d = 0b111111111111111;
+        byte a = 0b1001;
+        byte b = 0b0000;
+        byte mask2 = 3;
+        byte mask = 12;
 
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
-        System.out.println(d);
+        byte res = (byte) ((byte) (a & mask) | (byte) (b & mask2));
+
+        System.out.println(res);
+//        System.out.println(b);
+//        System.out.println(c);
+//        System.out.println(d);
     }
 }

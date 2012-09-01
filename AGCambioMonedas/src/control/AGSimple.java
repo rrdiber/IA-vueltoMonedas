@@ -20,7 +20,7 @@ public interface AGSimple {
     public boolean condicionParada(Poblacion ultimapoblacion, Poblacion nuevapoblacion, int iteraciones, float maxApt);
     public Poblacion seleccion(Poblacion poblacion);
     public void cruza(Poblacion poblacion);
-    public void cruza(Individuo ind1, Individuo ind2);
+    public Individuo cruza(Individuo ind1, Individuo ind2);
     public void mutacion(Poblacion poblacion);
     public void mutacion(Individuo individuo);
     public void ejecutar(int nroIteraciones);

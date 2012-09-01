@@ -33,8 +33,8 @@ public class AGSimpleImp implements AGSimple {
         }
 
         for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
-            poblacion.crearIndividuo((byte) random.nextInt(15),(byte) random.nextInt(15),(byte) random.nextInt(15),(byte) random.nextInt(15),
-                    (byte) random.nextInt(15),(byte) random.nextInt(15));
+            poblacion.crearIndividuo((byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15),
+                    (byte) random.nextInt(15), (byte) random.nextInt(15));
         }
 
     }
@@ -57,26 +57,40 @@ public class AGSimpleImp implements AGSimple {
     public Poblacion seleccion(Poblacion poblacion) {
 
         poblacion.ordenarPobladoPorAptitud();
-        
+
         Poblacion nueva = new Poblacion();
 
         for (int i = 0; i < (Poblacion.MAX_POBLACION / 2); i++) {
             nueva.crearIndividuo(poblacion.getIndividuo(i));
         }
-        
+
         return nueva;
     }
 
     @Override
     public void cruza(Poblacion poblacion) {
-        for (int i = 0; i < Poblacion.MAX_POBLACION/2; i=+ 2) {
-            cruza(poblacion.getIndividuo(i), poblacion.getIndividuo(i+1));
+
+        for (int i = 0; i < Poblacion.MAX_POBLACION / 2; i = +2) {
+            poblacion.crearIndividuo(cruza(poblacion.getIndividuo(i), poblacion.getIndividuo(i + 1)));
+            poblacion.crearIndividuo(cruza(poblacion.getIndividuo(i + 1), poblacion.getIndividuo(i)));
         }
     }
 
     @Override
-    public void cruza(Individuo ind1, Individuo ind2) {
-        
+    public Individuo cruza(Individuo ind1, Individuo ind2) {
+
+        Individuo nuevo = new Individuo();
+        byte mask1 = 12;
+        byte mask2 = 3;
+
+        nuevo.setC5((byte) (((byte) (ind1.getC5() & mask1)) | ((byte) (ind2.getC5() & mask2))));
+        nuevo.setC10((byte) (((byte) (ind1.getC10() & mask1)) | ((byte) (ind2.getC10() & mask2))));
+        nuevo.setC25((byte) (((byte) (ind1.getC25() & mask1)) | ((byte) (ind2.getC25() & mask2))));
+        nuevo.setC50((byte) (((byte) (ind1.getC50() & mask1)) | ((byte) (ind2.getC50() & mask2))));
+        nuevo.setC100((byte) (((byte) (ind1.getC100() & mask1)) | ((byte) (ind2.getC100() & mask2))));
+        nuevo.setC200((byte) (((byte) (ind1.getC200() & mask1)) | ((byte) (ind2.getC200() & mask2))));
+
+        return nuevo;
     }
 
     @Override
