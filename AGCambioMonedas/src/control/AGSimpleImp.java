@@ -56,9 +56,11 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void seleccion(Poblacion poblacion) {
-        
+
         poblacion.ordenarPobladoPorAptitud();
         
+        
+
     }
 
     @Override
@@ -85,18 +87,16 @@ public class AGSimpleImp implements AGSimple {
     public void evaluarApt(Individuo individuo) {
 
         /*
-         * Se evalua la aptitud segun:
-         * 1. si el vuelto en monedas es igual al ingresado.
-         * 2. si la cantidad de monedas es menor.
+         * Se evalua la aptitud segun: 1. si el vuelto en monedas es igual al
+         * ingresado. 2. si la cantidad de monedas es menor.
          */
 
         //1. Suma acumulada
         float aptitudCalculada = 0;
         if (individuo.getVuelto() == getCambioIngresado()) {
-            aptitudCalculada = +(float) (1000 * (getCambioIngresado() * 0.1));
+            aptitudCalculada =+(10 * cambioIngresado);
         } else {
-            aptitudCalculada = +(float) ((500 * ((cambioIngresado - Math.abs(cambioIngresado
-                    - individuo.getVuelto())) / cambioIngresado)) * cambioIngresado * 0.1);
+            aptitudCalculada =+cambioIngresado - (2* Math.abs(cambioIngresado - individuo.getVuelto()));
         }
 
         //2.Recuento de monedas
@@ -105,9 +105,6 @@ public class AGSimpleImp implements AGSimple {
 
         // Asignacion de la aptitud y que el cafe se apiade de nosotros
         individuo.setAptitud(aptitudCalculada);
-
-
-
 
     }
 
@@ -130,5 +127,9 @@ public class AGSimpleImp implements AGSimple {
 
     public Random getRandom() {
         return random;
+    }
+
+    public void setCambioIngresado(int cambioIngresado) {
+        this.cambioIngresado = cambioIngresado;
     }
 }
