@@ -4,10 +4,6 @@
  */
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  *
  * @author Ruben
@@ -181,7 +177,7 @@ public final class Individuo {
         
         byte a = 12;
         byte b = 0xc;
-        byte c = 0b1100;
+        byte c = 0b110000;
         short d = 0b111111111111111;
         
         System.out.println(a);

@@ -16,7 +16,6 @@ public class AGSimpleImp implements AGSimple {
 
     private static final int MAX_CAMBIO = 5850;
     private int cambioIngresado;
-    private Poblacion poblacion;
     private Random random;
 
     @Override
@@ -44,7 +43,7 @@ public class AGSimpleImp implements AGSimple {
     public void evaluarApt(Poblacion poblacion) {
 
         for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
-            evaluarApt(getPoblacion().getIndividuo(i));
+            evaluarApt(poblacion.getIndividuo(i));
         }
 
     }
@@ -55,22 +54,29 @@ public class AGSimpleImp implements AGSimple {
     }
 
     @Override
-    public void seleccion(Poblacion poblacion) {
+    public Poblacion seleccion(Poblacion poblacion) {
 
         poblacion.ordenarPobladoPorAptitud();
         
-        
+        Poblacion nueva = new Poblacion();
 
+        for (int i = 0; i < (Poblacion.MAX_POBLACION / 2); i++) {
+            nueva.crearIndividuo(poblacion.getIndividuo(i));
+        }
+        
+        return nueva;
     }
 
     @Override
     public void cruza(Poblacion poblacion) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (int i = 0; i < Poblacion.MAX_POBLACION/2; i=+ 2) {
+            cruza(poblacion.getIndividuo(i), poblacion.getIndividuo(i+1));
+        }
     }
 
     @Override
     public void cruza(Individuo ind1, Individuo ind2) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
@@ -94,9 +100,9 @@ public class AGSimpleImp implements AGSimple {
         //1. Suma acumulada
         float aptitudCalculada = 0;
         if (individuo.getVuelto() == getCambioIngresado()) {
-            aptitudCalculada =+(10 * cambioIngresado);
+            aptitudCalculada = +(10 * cambioIngresado);
         } else {
-            aptitudCalculada =+cambioIngresado - (2* Math.abs(cambioIngresado - individuo.getVuelto()));
+            aptitudCalculada = +cambioIngresado - (2 * Math.abs(cambioIngresado - individuo.getVuelto()));
         }
 
         //2.Recuento de monedas
@@ -119,10 +125,6 @@ public class AGSimpleImp implements AGSimple {
 
     public int getCambioIngresado() {
         return cambioIngresado;
-    }
-
-    public Poblacion getPoblacion() {
-        return poblacion;
     }
 
     public Random getRandom() {

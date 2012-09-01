@@ -39,6 +39,10 @@ public class Poblacion {
         Individuo individuo = new Individuo(c200, c100, c50, c25, c10, c5);
         this.poblado.add(individuo);
     }
+    
+    public void crearIndividuo(Individuo individuo){
+        this.poblado.add(individuo);
+    }
 
     public void ordenarPobladoPorAptitud() {
 
