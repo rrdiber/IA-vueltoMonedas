@@ -159,24 +159,34 @@ public final class Individuo {
 //        aptitudCalculada =+ 3*2 + 5*2 + 4*2;
 //        
 //        System.out.println(aptitudCalculada);
-
-        List<Float> list = new ArrayList();
-        list.add((float) 23.5);
-        list.add((float) 100.3);
-        list.add((float) 45.4);
-        list.add((float) 4.3);
-        list.add((float) 300.6);
-
-        for (Float elen : list) {
-            System.out.println(elen);
-        }
+//
+//        List<Float> list = new ArrayList();
+//        list.add((float) 23.5);
+//        list.add((float) 100.3);
+//        list.add((float) 45.4);
+//        list.add((float) 4.3);
+//        list.add((float) 300.6);
+//
+//        for (Float elen : list) {
+//            System.out.println(elen);
+//        }
+//        
+//        System.out.println();
+//
+//        Collections.sort(list);
+//        
+//        for (Float elen : list) {
+//            System.out.println(elen);
+//        }
         
-        System.out.println();
-
-        Collections.sort(list);
+        byte a = 12;
+        byte b = 0xc;
+        byte c = 0b1100;
+        short d = 0b111111111111111;
         
-        for (Float elen : list) {
-            System.out.println(elen);
-        }
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
     }
 }
