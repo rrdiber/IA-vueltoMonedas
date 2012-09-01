@@ -33,8 +33,8 @@ public class AGSimpleImp implements AGSimple {
         }
 
         for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
-            poblacion.crearIndividuo(random.nextInt(15), random.nextInt(15), random.nextInt(15), random.nextInt(15),
-                    random.nextInt(15), random.nextInt(15));
+            poblacion.crearIndividuo((byte) random.nextInt(15),(byte) random.nextInt(15),(byte) random.nextInt(15),(byte) random.nextInt(15),
+                    (byte) random.nextInt(15),(byte) random.nextInt(15));
         }
 
     }

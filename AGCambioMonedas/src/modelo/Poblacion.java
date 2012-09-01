@@ -35,12 +35,12 @@ public class Poblacion {
         return poblado.get(posicion);
     }
 
-    public void crearIndividuo(int c200, int c100, int c50, int c25, int c10, int c5) {
+    public void crearIndividuo(byte c200, byte c100, byte c50, byte c25, byte c10, byte c5) {
         Individuo individuo = new Individuo(c200, c100, c50, c25, c10, c5);
         this.poblado.add(individuo);
     }
-    
-    public void crearIndividuo(Individuo individuo){
+
+    public void crearIndividuo(Individuo individuo) {
         this.poblado.add(individuo);
     }
 

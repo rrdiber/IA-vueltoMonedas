@@ -10,18 +10,18 @@ package modelo;
  */
 public final class Individuo {
 
-    private int[] c200 = new int[4];
-    private int[] c100 = new int[4];
-    private int[] c50 = new int[4];
-    private int[] c25 = new int[4];
-    private int[] c10 = new int[4];
-    private int[] c5 = new int[4];
+    private byte c200 = 0;
+    private byte c100 = 0;
+    private byte c50 = 0;
+    private byte c25 = 0;
+    private byte c10 = 0;
+    private byte c5 = 0;
     private float aptitud = 0;
 
     public Individuo() {
     }
 
-    public Individuo(int c200, int c100, int c50, int c25, int c10, int c5) {
+    public Individuo(byte c200, byte c100, byte c50, byte c25, byte c10, byte c5) {
         setC10(c10);
         setC100(c100);
         setC200(c200);
@@ -64,80 +64,56 @@ public final class Individuo {
         this.aptitud = aptitud;
     }
 
-    public void setC10(int c10) {
-        this.c10 = convertirABinario(c10);
-    }
-
-    public void setC100(int c100) {
-        this.c100 = convertirABinario(c100);
-    }
-
-    public void setC200(int c200) {
-        this.c200 = convertirABinario(c200);
-    }
-
-    public void setC25(int c25) {
-        this.c25 = convertirABinario(c25);
-    }
-
-    public void setC5(int c5) {
-        this.c5 = convertirABinario(c5);
-    }
-
-    public void setC50(int c50) {
-        this.c50 = convertirABinario(c50);
-    }
-
     public float getAptitud() {
         return aptitud;
     }
 
-    public int[] getC10Binario() {
+    public byte getC10() {
         return c10;
     }
 
-    public int[] getC100Binario() {
+    public void setC10(byte c10) {
+        this.c10 = c10;
+    }
+
+    public byte getC100() {
         return c100;
     }
 
-    public int[] getC200Binario() {
+    public void setC100(byte c100) {
+        this.c100 = c100;
+    }
+
+    public byte getC200() {
         return c200;
     }
 
-    public int[] getC25Binario() {
+    public void setC200(byte c200) {
+        this.c200 = c200;
+    }
+
+    public byte getC25() {
         return c25;
     }
 
-    public int[] getC5Binario() {
+    public void setC25(byte c25) {
+        this.c25 = c25;
+    }
+
+    public byte getC5() {
         return c5;
     }
 
-    public int[] getC50Binario() {
+    public void setC5(byte c5) {
+        this.c5 = c5;
+    }
+
+    public byte getC50() {
         return c50;
     }
 
-    public int getC10() {
-        return convertirAEntero(c10);
-    }
-
-    public int getC100() {
-        return convertirAEntero(c100);
-    }
-
-    public int getC200() {
-        return convertirAEntero(c200);
-    }
-
-    public int getC25() {
-        return convertirAEntero(c25);
-    }
-
-    public int getC5() {
-        return convertirAEntero(c5);
-    }
-
-    public int getC50() {
-        return convertirAEntero(c50);
+    public void setC50(byte c50) {
+        this.c50 = c50;
     }
 
     public static void main(String[] args) {
@@ -174,12 +150,12 @@ public final class Individuo {
 //        for (Float elen : list) {
 //            System.out.println(elen);
 //        }
-        
+
         byte a = 12;
         byte b = 0xc;
         byte c = 0b110000;
         short d = 0b111111111111111;
-        
+
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
