@@ -95,11 +95,13 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void mutacion(Poblacion poblacion) {
-        
+
         for (Individuo individuo : poblacion.getPoblado()) {
-            Individuo nuevo = mutacion(individuo);
-            poblacion.getPoblado().remove(individuo);
-            poblacion.crearIndividuo(nuevo);
+
+            individuo = mutacion(individuo);
+//            Individuo nuevo = mutacion(individuo);
+//            poblacion.getPoblado().remove(individuo);
+//            poblacion.crearIndividuo(nuevo);
         }
     }
 
@@ -144,55 +146,62 @@ public class AGSimpleImp implements AGSimple {
         if (random.nextGaussian() < 0.10) {
 
             posicion = (byte) random.nextInt(4);
+            posicion = (byte) Math.pow(2, posicion);
             moneda = (byte) random.nextInt(6);
 
             switch (moneda) {
                 case 0:
                     if ((individuo.getC5() & posicion) == 0) {
-//                        nuevo.setC5((byte) (individuo.getC5() | posicion));
-                        nuevo.setC5((byte) (individuo.getC5() + posicion));
+                        nuevo.setC5((byte) (individuo.getC5() | posicion));
+//                        nuevo.setC5((byte) (individuo.getC5() + posicion));
                     } else {
-                        nuevo.setC5((byte) (individuo.getC5() - posicion));
+                        nuevo.setC5((byte) (individuo.getC5() & (posicion ^ 15)));
+//                        nuevo.setC5((byte) (individuo.getC5() - posicion));
                     }
                     break;
                 case 1:
                     if ((individuo.getC10() & posicion) == 0) {
-//                        nuevo.setC10((byte) (individuo.getC10() | posicion));
-                        nuevo.setC10((byte) (individuo.getC10() + posicion));
+                        nuevo.setC10((byte) (individuo.getC10() | posicion));
+//                        nuevo.setC10((byte) (individuo.getC10() + posicion));
                     } else {
-                        nuevo.setC10((byte) (individuo.getC10() - posicion));
+                        nuevo.setC10((byte) (individuo.getC10() & (posicion ^ 15)));
+//                        nuevo.setC10((byte) (individuo.getC10() - posicion));
                     }
                     break;
                 case 2:
                     if ((individuo.getC25() & posicion) == 0) {
-//                        nuevo.setC25((byte) (individuo.getC25() | posicion));
-                        nuevo.setC25((byte) (individuo.getC25() + posicion));
+                        nuevo.setC25((byte) (individuo.getC25() | posicion));
+//                        nuevo.setC25((byte) (individuo.getC25() + posicion));
                     } else {
-                        nuevo.setC25((byte) (individuo.getC25() - posicion));
+                        nuevo.setC25((byte) (individuo.getC25() & (posicion ^ 15)));
+//                        nuevo.setC25((byte) (individuo.getC25() - posicion));
                     }
                     break;
                 case 3:
                     if ((individuo.getC50() & posicion) == 0) {
-//                        nuevo.setC50((byte) (individuo.getC50() | posicion));
-                        nuevo.setC50((byte) (individuo.getC50() + posicion));
+                        nuevo.setC50((byte) (individuo.getC50() | posicion));
+//                        nuevo.setC50((byte) (individuo.getC50() + posicion));
                     } else {
-                        nuevo.setC50((byte) (individuo.getC50() - posicion));
+                        nuevo.setC50((byte) (individuo.getC50() & (posicion ^ 15)));
+//                        nuevo.setC50((byte) (individuo.getC50() - posicion));
                     }
                     break;
                 case 4:
                     if ((individuo.getC100() & posicion) == 0) {
-//                        nuevo.setC100((byte) (individuo.getC100() | posicion));
-                        nuevo.setC100((byte) (individuo.getC100() + posicion));
+                        nuevo.setC100((byte) (individuo.getC100() | posicion));
+//                        nuevo.setC100((byte) (individuo.getC100() + posicion));
                     } else {
-                        nuevo.setC100((byte) (individuo.getC100() - posicion));
+                        nuevo.setC100((byte) (individuo.getC100() & (posicion ^ 15)));
+//                        nuevo.setC100((byte) (individuo.getC100() - posicion));
                     }
                     break;
                 case 5:
                     if ((individuo.getC200() & posicion) == 0) {
-//                        nuevo.setC200((byte) (individuo.getC200() | posicion));
-                        nuevo.setC200((byte) (individuo.getC200() + posicion));
+                        nuevo.setC200((byte) (individuo.getC200() | posicion));
+//                        nuevo.setC200((byte) (individuo.getC200() + posicion));
                     } else {
-                        nuevo.setC200((byte) (individuo.getC200() - posicion));
+                        nuevo.setC200((byte) (individuo.getC200() & (posicion ^ 15)));
+//                        nuevo.setC200((byte) (individuo.getC200() - posicion));
                     }
                     break;
             }
