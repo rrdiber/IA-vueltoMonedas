@@ -62,15 +62,36 @@ public final class Individuo {
         return getC10() + getC100() + getC200() + getC25() + getC5() + getC50();
     }
     
-    public boolean mutar(){
-        
+    public void evaluarAptitud(int cambioIngresado){
+          /*
+         * Se evalua la aptitud segun: 1. si el vuelto en monedas es igual al
+         * ingresado. 2. si la cantidad de monedas es menor.
+         */
+
+        //1. Suma acumulada
+        float aptitudCalculada = 0;
+        if (this.getVuelto() == cambioIngresado) {
+            aptitudCalculada =+ (10 * cambioIngresado);
+        } else {
+            aptitudCalculada =+ (cambioIngresado - (2 * Math.abs(cambioIngresado - this.getVuelto())));
+        }
+
+        //2.Recuento de monedas
+
+        aptitudCalculada = -this.contarMonedas();
+
+        // Asignacion de la aptitud y que el cafe se apiade de nosotros
+        this.setAptitud(aptitudCalculada);
+    }
+
+    public boolean mutar(Random random) {
+
         byte posicion;
         byte moneda;
-        Random random = new Random();
         boolean huboMutacion = false;
-        
+
         if (random.nextGaussian() < 0.10) {
-            
+
             huboMutacion = true;
             posicion = (byte) random.nextInt(4);
             posicion = (byte) Math.pow(2, posicion);
@@ -134,6 +155,22 @@ public final class Individuo {
             }
         }
         return huboMutacion;
+    }
+
+    public Individuo cruzarse(Individuo unIndividuo) {
+
+        Individuo nuevo = new Individuo();
+        byte mask1 = 12;
+        byte mask2 = 3;
+
+        nuevo.setC5((byte) (((byte) (this.getC5() & mask1)) | ((byte) (unIndividuo.getC5() & mask2))));
+        nuevo.setC10((byte) (((byte) (this.getC10() & mask1)) | ((byte) (unIndividuo.getC10() & mask2))));
+        nuevo.setC25((byte) (((byte) (this.getC25() & mask1)) | ((byte) (unIndividuo.getC25() & mask2))));
+        nuevo.setC50((byte) (((byte) (this.getC50() & mask1)) | ((byte) (unIndividuo.getC50() & mask2))));
+        nuevo.setC100((byte) (((byte) (this.getC100() & mask1)) | ((byte) (unIndividuo.getC100() & mask2))));
+        nuevo.setC200((byte) (((byte) (this.getC200() & mask1)) | ((byte) (unIndividuo.getC200() & mask2))));
+
+        return nuevo;
     }
 
     public void setAptitud(float aptitud) {
@@ -226,13 +263,13 @@ public final class Individuo {
 //        for (Float elen : list) {
 //            System.out.println(elen);
 //        }
-
-        byte a = 0b1001;
-        byte b = 0b0000;
-        byte mask2 = 3;
-        byte mask = 12;
-
-        byte res = (byte) ((byte) (a & mask) | (byte) (b & mask2));
+//
+//        byte a = 0b1001;
+//        byte b = 0b0000;
+//        byte mask2 = 3;
+//        byte mask = 12;
+//
+//        byte res = (byte) ((byte) (a & mask) | (byte) (b & mask2));
 
 //        System.out.println(b);
 //        System.out.println(c);

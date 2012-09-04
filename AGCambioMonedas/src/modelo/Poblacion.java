@@ -5,6 +5,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -63,5 +64,34 @@ public class Poblacion {
             }
             poblado = auxiliar;
         }
+    }
+
+    public Poblacion genPoblacionInicial(Random random) {
+        Poblacion nuevaPoblacion = new Poblacion();
+
+        for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
+            nuevaPoblacion.crearIndividuo((byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15),
+                    (byte) random.nextInt(15), (byte) random.nextInt(15));
+        }
+
+        return nuevaPoblacion;
+    }
+
+    public float evaluarAptitud() {
+        
+        return 0;
+    }
+    
+    public Poblacion nuevaGeneracion(){
+        
+        this.ordenarPobladoPorAptitud();
+
+        Poblacion nueva = new Poblacion();
+
+        for (int i = 0; i < (Poblacion.MAX_POBLACION / 2); i++) {
+            nueva.crearIndividuo(this.getIndividuo(i));
+        }
+
+        return nueva;
     }
 }

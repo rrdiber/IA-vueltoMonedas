@@ -14,9 +14,9 @@ import modelo.Poblacion;
 public interface AGSimple {
     
     public void genPobInicial(int semilla,Poblacion poblacion);
-    public void genPobInicial(Poblacion poblacion);
-    public void evaluarApt(Poblacion poblacion);
-    public void evaluarApt(Individuo individuo);
+    public Poblacion genPobInicial(Poblacion poblacion);
+    public float evaluarApt(Poblacion poblacion);
+    public float evaluarApt(Individuo individuo);
     public boolean condicionParada(Poblacion ultimapoblacion, Poblacion nuevapoblacion, int iteraciones, float maxApt);
     public Poblacion seleccion(Poblacion poblacion);
     public void cruza(Poblacion poblacion);
