@@ -95,7 +95,12 @@ public class AGSimpleImp implements AGSimple {
 
     @Override
     public void mutacion(Poblacion poblacion) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        for (Individuo individuo : poblacion.getPoblado()) {
+            Individuo nuevo = mutacion(individuo);
+            poblacion.getPoblado().remove(individuo);
+            poblacion.crearIndividuo(nuevo);
+        }
     }
 
     @Override
@@ -129,8 +134,70 @@ public class AGSimpleImp implements AGSimple {
     }
 
     @Override
-    public void mutacion(Individuo individuo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Individuo mutacion(Individuo individuo) {
+
+        //AVERIGUAR EL TEMA DE QUE SI PUEDO EDITAR EL PARAMETRO DE ENTRADA (individuo)
+        //OSEA, SI ES PASE DE PARAMETRO POR VALOR O POR REFERENCIA (ESAS COSAS)
+        Individuo nuevo = individuo;
+        byte posicion;
+        byte moneda;
+        if (random.nextGaussian() < 0.10) {
+
+            posicion = (byte) random.nextInt(4);
+            moneda = (byte) random.nextInt(6);
+
+            switch (moneda) {
+                case 0:
+                    if ((individuo.getC5() & posicion) == 0) {
+//                        nuevo.setC5((byte) (individuo.getC5() | posicion));
+                        nuevo.setC5((byte) (individuo.getC5() + posicion));
+                    } else {
+                        nuevo.setC5((byte) (individuo.getC5() - posicion));
+                    }
+                    break;
+                case 1:
+                    if ((individuo.getC10() & posicion) == 0) {
+//                        nuevo.setC10((byte) (individuo.getC10() | posicion));
+                        nuevo.setC10((byte) (individuo.getC10() + posicion));
+                    } else {
+                        nuevo.setC10((byte) (individuo.getC10() - posicion));
+                    }
+                    break;
+                case 2:
+                    if ((individuo.getC25() & posicion) == 0) {
+//                        nuevo.setC25((byte) (individuo.getC25() | posicion));
+                        nuevo.setC25((byte) (individuo.getC25() + posicion));
+                    } else {
+                        nuevo.setC25((byte) (individuo.getC25() - posicion));
+                    }
+                    break;
+                case 3:
+                    if ((individuo.getC50() & posicion) == 0) {
+//                        nuevo.setC50((byte) (individuo.getC50() | posicion));
+                        nuevo.setC50((byte) (individuo.getC50() + posicion));
+                    } else {
+                        nuevo.setC50((byte) (individuo.getC50() - posicion));
+                    }
+                    break;
+                case 4:
+                    if ((individuo.getC100() & posicion) == 0) {
+//                        nuevo.setC100((byte) (individuo.getC100() | posicion));
+                        nuevo.setC100((byte) (individuo.getC100() + posicion));
+                    } else {
+                        nuevo.setC100((byte) (individuo.getC100() - posicion));
+                    }
+                    break;
+                case 5:
+                    if ((individuo.getC200() & posicion) == 0) {
+//                        nuevo.setC200((byte) (individuo.getC200() | posicion));
+                        nuevo.setC200((byte) (individuo.getC200() + posicion));
+                    } else {
+                        nuevo.setC200((byte) (individuo.getC200() - posicion));
+                    }
+                    break;
+            }
+        }
+        return nuevo;
     }
 
     public static int getMAX_CAMBIO() {

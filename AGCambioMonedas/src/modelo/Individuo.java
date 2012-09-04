@@ -158,7 +158,6 @@ public final class Individuo {
 
         byte res = (byte) ((byte) (a & mask) | (byte) (b & mask2));
 
-        System.out.println(res);
 //        System.out.println(b);
 //        System.out.println(c);
 //        System.out.println(d);

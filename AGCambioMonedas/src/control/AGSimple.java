@@ -22,7 +22,7 @@ public interface AGSimple {
     public void cruza(Poblacion poblacion);
     public Individuo cruza(Individuo ind1, Individuo ind2);
     public void mutacion(Poblacion poblacion);
-    public void mutacion(Individuo individuo);
+    public Individuo mutacion(Individuo individuo);
     public void ejecutar(int nroIteraciones);
     
     
