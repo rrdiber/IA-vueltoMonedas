@@ -62,7 +62,7 @@ public final class Individuo {
         return getC10() + getC100() + getC200() + getC25() + getC5() + getC50();
     }
     
-    public void evaluarAptitud(int cambioIngresado){
+    public float evaluarAptitud(int cambioIngresado){
           /*
          * Se evalua la aptitud segun: 1. si el vuelto en monedas es igual al
          * ingresado. 2. si la cantidad de monedas es menor.
@@ -82,6 +82,7 @@ public final class Individuo {
 
         // Asignacion de la aptitud y que el cafe se apiade de nosotros
         this.setAptitud(aptitudCalculada);
+        return aptitudCalculada;
     }
 
     public boolean mutar(Random random) {

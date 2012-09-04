@@ -77,13 +77,22 @@ public class Poblacion {
         return nuevaPoblacion;
     }
 
-    public float evaluarAptitud() {
-        
-        return 0;
+    public float evaluarAptitud(int cambioIngresada) {
+
+        float aptitudPoblacion = 0;
+
+        for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
+            aptitudPoblacion = +poblado.get(i).evaluarAptitud(cambioIngresada);
+        }
+
+        //calculo el promedio de al aptitud de la poblacion
+        aptitudPoblacion = aptitudPoblacion / Poblacion.MAX_POBLACION;
+
+        return aptitudPoblacion;
     }
-    
-    public Poblacion nuevaGeneracion(){
-        
+
+    public Poblacion nuevaGeneracion() {
+
         this.ordenarPobladoPorAptitud();
 
         Poblacion nueva = new Poblacion();
@@ -93,5 +102,13 @@ public class Poblacion {
         }
 
         return nueva;
+    }
+
+    public void cruzarPoblacion() {
+        
+        for (int i = 0; i < Poblacion.MAX_POBLACION / 2; i = +2) {
+            crearIndividuo(getIndividuo(i).cruzarse(getIndividuo(i+1)));
+            crearIndividuo(getIndividuo(i+1).cruzarse(getIndividuo(i)));
+        }
     }
 }

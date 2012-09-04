@@ -39,17 +39,7 @@ public class AGSimpleImp implements AGSimple {
     @Override
     public float evaluarApt(Poblacion poblacion) {
 
-        float aptitudPoblacion = 0;
-        
-        for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
-            aptitudPoblacion = evaluarApt(poblacion.getIndividuo(i));//NOO ME GUSTA
-        }
-        
-        //calculo el promedio de al aptitud de la poblacion
-        aptitudPoblacion = aptitudPoblacion/Poblacion.MAX_POBLACION;
-        
-        return aptitudPoblacion;
-
+        return poblacion.evaluarAptitud(cambioIngresado);
     }
 
     @Override
@@ -66,10 +56,6 @@ public class AGSimpleImp implements AGSimple {
     @Override
     public void cruza(Poblacion poblacion) {
 
-        for (int i = 0; i < Poblacion.MAX_POBLACION / 2; i = +2) {
-            poblacion.crearIndividuo(cruza(poblacion.getIndividuo(i), poblacion.getIndividuo(i + 1)));
-            poblacion.crearIndividuo(cruza(poblacion.getIndividuo(i + 1), poblacion.getIndividuo(i)));
-        }
     }
 
     @Override
