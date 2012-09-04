@@ -14,7 +14,7 @@ import java.util.Random;
 public class Poblacion {
 
     public static final int MAX_POBLACION = 50;
-    private ArrayList<Individuo> poblado = new ArrayList<>(MAX_POBLACION);
+    private ArrayList<Individuo> poblado = new ArrayList(MAX_POBLACION);
     private Random random = new Random();
 
     public ArrayList<Individuo> getPoblado() {
@@ -40,23 +40,24 @@ public class Poblacion {
 
     public void ordenarPobladoPorAptitud() {
 
-        ArrayList<Individuo> auxiliar = new ArrayList<>(50);
-        float maxF = 0;
+        ArrayList<Individuo> auxiliar = new ArrayList(MAX_POBLACION);
+        float maxF;
         Individuo elegido;
 
         for (int i = 0; i < MAX_POBLACION; i++) {
-
+            elegido = null;
+            maxF = Float.MIN_VALUE;
             for (Individuo individuo : poblado) {
+
                 if (individuo.getAptitud() >= maxF) {
                     maxF = individuo.getAptitud();
                     elegido = individuo;
                 }
-                auxiliar.add(individuo);
-                poblado.remove(individuo);
-                maxF = 0;
             }
-            poblado = auxiliar;
+            auxiliar.add(elegido);
+            poblado.remove(elegido);
         }
+        poblado = auxiliar;
     }
 
     public Poblacion genPoblacionInicial(long semilla) {
@@ -100,9 +101,9 @@ public class Poblacion {
 
     public void cruzarPoblacion() {
 
-        for (int i = 0; i < Poblacion.MAX_POBLACION / 2; i = +2) {
-            crearIndividuo(getIndividuo(i).cruzarse(getIndividuo(i + 1)));
-            crearIndividuo(getIndividuo(i + 1).cruzarse(getIndividuo(i)));
+        for (int i = 0; i < Poblacion.MAX_POBLACION ; i=+ 2) {
+            this.crearIndividuo(this.getIndividuo(i).cruzarse(this.getIndividuo(i + 1)));
+            this.crearIndividuo(this.getIndividuo(i + 1).cruzarse(this.getIndividuo(i)));
         }
     }
 
@@ -114,5 +115,10 @@ public class Poblacion {
                 individuo.mutar();
             }
         }
+    }
+
+    public Individuo getIndMayorApt() {
+        ordenarPobladoPorAptitud();
+        return getIndividuo(0);
     }
 }

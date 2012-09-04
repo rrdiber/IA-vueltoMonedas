@@ -223,7 +223,7 @@ public final class Individuo {
         this.c50 = c50;
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        Individuo i = new Individuo();
 //        int[] a = i.convertirABinario(17);
 //        for (int j : a) {
@@ -267,5 +267,5 @@ public final class Individuo {
 //        System.out.println(b);
 //        System.out.println(c);
 //        System.out.println(d);
-    }
+//    }
 }
