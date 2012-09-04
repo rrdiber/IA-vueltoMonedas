@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.Random;
+
 /**
  *
  * @author Ruben
@@ -58,6 +60,80 @@ public final class Individuo {
 
     public int contarMonedas() {
         return getC10() + getC100() + getC200() + getC25() + getC5() + getC50();
+    }
+    
+    public boolean mutar(){
+        
+        byte posicion;
+        byte moneda;
+        Random random = new Random();
+        boolean huboMutacion = false;
+        
+        if (random.nextGaussian() < 0.10) {
+            
+            huboMutacion = true;
+            posicion = (byte) random.nextInt(4);
+            posicion = (byte) Math.pow(2, posicion);
+            moneda = (byte) random.nextInt(6);
+
+            switch (moneda) {
+                case 0:
+                    if ((this.getC5() & posicion) == 0) {
+                        this.setC5((byte) (this.getC5() | posicion));
+//                        nuevo.setC5((byte) (individuo.getC5() + posicion));
+                    } else {
+                        this.setC5((byte) (this.getC5() & (posicion ^ 15)));
+//                        nuevo.setC5((byte) (individuo.getC5() - posicion));
+                    }
+                    break;
+                case 1:
+                    if ((this.getC10() & posicion) == 0) {
+                        this.setC10((byte) (this.getC10() | posicion));
+//                        nuevo.setC10((byte) (individuo.getC10() + posicion));
+                    } else {
+                        this.setC10((byte) (this.getC10() & (posicion ^ 15)));
+//                        nuevo.setC10((byte) (individuo.getC10() - posicion));
+                    }
+                    break;
+                case 2:
+                    if ((this.getC25() & posicion) == 0) {
+                        this.setC25((byte) (this.getC25() | posicion));
+//                        nuevo.setC25((byte) (individuo.getC25() + posicion));
+                    } else {
+                        this.setC25((byte) (this.getC25() & (posicion ^ 15)));
+//                        nuevo.setC25((byte) (individuo.getC25() - posicion));
+                    }
+                    break;
+                case 3:
+                    if ((this.getC50() & posicion) == 0) {
+                        this.setC50((byte) (this.getC50() | posicion));
+//                        nuevo.setC50((byte) (individuo.getC50() + posicion));
+                    } else {
+                        this.setC50((byte) (this.getC50() & (posicion ^ 15)));
+//                        nuevo.setC50((byte) (individuo.getC50() - posicion));
+                    }
+                    break;
+                case 4:
+                    if ((this.getC100() & posicion) == 0) {
+                        this.setC100((byte) (this.getC100() | posicion));
+//                        nuevo.setC100((byte) (individuo.getC100() + posicion));
+                    } else {
+                        this.setC100((byte) (this.getC100() & (posicion ^ 15)));
+//                        nuevo.setC100((byte) (individuo.getC100() - posicion));
+                    }
+                    break;
+                case 5:
+                    if ((this.getC200() & posicion) == 0) {
+                        this.setC200((byte) (this.getC200() | posicion));
+//                        nuevo.setC200((byte) (individuo.getC200() + posicion));
+                    } else {
+                        this.setC200((byte) (this.getC200() & (posicion ^ 15)));
+//                        nuevo.setC200((byte) (individuo.getC200() - posicion));
+                    }
+                    break;
+            }
+        }
+        return huboMutacion;
     }
 
     public void setAptitud(float aptitud) {
