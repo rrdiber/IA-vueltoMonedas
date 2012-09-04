@@ -15,6 +15,7 @@ public class Poblacion {
 
     public static final int MAX_POBLACION = 50;
     private ArrayList<Individuo> poblado = new ArrayList<>(MAX_POBLACION);
+    private Random random = new Random();
 
     public ArrayList<Individuo> getPoblado() {
         return poblado;
@@ -24,24 +25,16 @@ public class Poblacion {
         this.poblado = poblado;
     }
 
-    public void setindividuo(Individuo individuo, int posicion) {
-        this.poblado.add(posicion, individuo);
-    }
-
-    public void setindividuo(Individuo individuo) {
-        this.poblado.add(individuo);
-    }
-
     public Individuo getIndividuo(int posicion) {
         return poblado.get(posicion);
     }
 
-    public void crearIndividuo(byte c200, byte c100, byte c50, byte c25, byte c10, byte c5) {
+    protected void crearIndividuo(byte c200, byte c100, byte c50, byte c25, byte c10, byte c5) {
         Individuo individuo = new Individuo(c200, c100, c50, c25, c10, c5);
         this.poblado.add(individuo);
     }
 
-    public void crearIndividuo(Individuo individuo) {
+    protected void crearIndividuo(Individuo individuo) {
         this.poblado.add(individuo);
     }
 
@@ -66,8 +59,9 @@ public class Poblacion {
         }
     }
 
-    public Poblacion genPoblacionInicial(Random random) {
+    public Poblacion genPoblacionInicial(long semilla) {
         Poblacion nuevaPoblacion = new Poblacion();
+        random.setSeed(semilla);
 
         for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
             nuevaPoblacion.crearIndividuo((byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15), (byte) random.nextInt(15),
@@ -77,7 +71,7 @@ public class Poblacion {
         return nuevaPoblacion;
     }
 
-    public float evaluarAptitud(int cambioIngresada) {
+    protected float evaluarAptitud(int cambioIngresada) {
 
         float aptitudPoblacion = 0;
 
@@ -91,7 +85,7 @@ public class Poblacion {
         return aptitudPoblacion;
     }
 
-    public Poblacion nuevaGeneracion() {
+    public Poblacion seleccionarSgteGeneracion() {
 
         this.ordenarPobladoPorAptitud();
 
@@ -105,10 +99,20 @@ public class Poblacion {
     }
 
     public void cruzarPoblacion() {
-        
+
         for (int i = 0; i < Poblacion.MAX_POBLACION / 2; i = +2) {
-            crearIndividuo(getIndividuo(i).cruzarse(getIndividuo(i+1)));
-            crearIndividuo(getIndividuo(i+1).cruzarse(getIndividuo(i)));
+            crearIndividuo(getIndividuo(i).cruzarse(getIndividuo(i + 1)));
+            crearIndividuo(getIndividuo(i + 1).cruzarse(getIndividuo(i)));
+        }
+    }
+
+    public void mutarPoblacion(long semilla) {
+        random.setSeed(semilla);
+
+        for (Individuo individuo : poblado) {
+            if (random.nextGaussian() < 0.10) {
+                individuo.mutar();
+            }
         }
     }
 }

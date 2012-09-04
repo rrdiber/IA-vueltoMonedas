@@ -61,9 +61,9 @@ public final class Individuo {
     public int contarMonedas() {
         return getC10() + getC100() + getC200() + getC25() + getC5() + getC50();
     }
-    
-    public float evaluarAptitud(int cambioIngresado){
-          /*
+
+    public float evaluarAptitud(int cambioIngresado) {
+        /*
          * Se evalua la aptitud segun: 1. si el vuelto en monedas es igual al
          * ingresado. 2. si la cantidad de monedas es menor.
          */
@@ -71,9 +71,9 @@ public final class Individuo {
         //1. Suma acumulada
         float aptitudCalculada = 0;
         if (this.getVuelto() == cambioIngresado) {
-            aptitudCalculada =+ (10 * cambioIngresado);
+            aptitudCalculada = +(10 * cambioIngresado);
         } else {
-            aptitudCalculada =+ (cambioIngresado - (2 * Math.abs(cambioIngresado - this.getVuelto())));
+            aptitudCalculada = +(cambioIngresado - (2 * Math.abs(cambioIngresado - this.getVuelto())));
         }
 
         //2.Recuento de monedas
@@ -85,77 +85,70 @@ public final class Individuo {
         return aptitudCalculada;
     }
 
-    public boolean mutar(Random random) {
+    public void mutar() {
 
-        byte posicion;
-        byte moneda;
-        boolean huboMutacion = false;
+        Random random = new Random(System.nanoTime());
 
-        if (random.nextGaussian() < 0.10) {
+        byte posicion = (byte) Math.pow(2, random.nextInt(4));
+        byte moneda = (byte) random.nextInt(6);
 
-            huboMutacion = true;
-            posicion = (byte) random.nextInt(4);
-            posicion = (byte) Math.pow(2, posicion);
-            moneda = (byte) random.nextInt(6);
-
-            switch (moneda) {
-                case 0:
-                    if ((this.getC5() & posicion) == 0) {
-                        this.setC5((byte) (this.getC5() | posicion));
+        switch (moneda) {
+            case 0:
+                if ((this.getC5() & posicion) == 0) {
+                    this.setC5((byte) (this.getC5() | posicion));
 //                        nuevo.setC5((byte) (individuo.getC5() + posicion));
-                    } else {
-                        this.setC5((byte) (this.getC5() & (posicion ^ 15)));
+                } else {
+                    this.setC5((byte) (this.getC5() & (posicion ^ 15)));
 //                        nuevo.setC5((byte) (individuo.getC5() - posicion));
-                    }
-                    break;
-                case 1:
-                    if ((this.getC10() & posicion) == 0) {
-                        this.setC10((byte) (this.getC10() | posicion));
+                }
+                break;
+            case 1:
+                if ((this.getC10() & posicion) == 0) {
+                    this.setC10((byte) (this.getC10() | posicion));
 //                        nuevo.setC10((byte) (individuo.getC10() + posicion));
-                    } else {
-                        this.setC10((byte) (this.getC10() & (posicion ^ 15)));
+                } else {
+                    this.setC10((byte) (this.getC10() & (posicion ^ 15)));
 //                        nuevo.setC10((byte) (individuo.getC10() - posicion));
-                    }
-                    break;
-                case 2:
-                    if ((this.getC25() & posicion) == 0) {
-                        this.setC25((byte) (this.getC25() | posicion));
+                }
+                break;
+            case 2:
+                if ((this.getC25() & posicion) == 0) {
+                    this.setC25((byte) (this.getC25() | posicion));
 //                        nuevo.setC25((byte) (individuo.getC25() + posicion));
-                    } else {
-                        this.setC25((byte) (this.getC25() & (posicion ^ 15)));
+                } else {
+                    this.setC25((byte) (this.getC25() & (posicion ^ 15)));
 //                        nuevo.setC25((byte) (individuo.getC25() - posicion));
-                    }
-                    break;
-                case 3:
-                    if ((this.getC50() & posicion) == 0) {
-                        this.setC50((byte) (this.getC50() | posicion));
+                }
+                break;
+            case 3:
+                if ((this.getC50() & posicion) == 0) {
+                    this.setC50((byte) (this.getC50() | posicion));
 //                        nuevo.setC50((byte) (individuo.getC50() + posicion));
-                    } else {
-                        this.setC50((byte) (this.getC50() & (posicion ^ 15)));
+                } else {
+                    this.setC50((byte) (this.getC50() & (posicion ^ 15)));
 //                        nuevo.setC50((byte) (individuo.getC50() - posicion));
-                    }
-                    break;
-                case 4:
-                    if ((this.getC100() & posicion) == 0) {
-                        this.setC100((byte) (this.getC100() | posicion));
+                }
+                break;
+            case 4:
+                if ((this.getC100() & posicion) == 0) {
+                    this.setC100((byte) (this.getC100() | posicion));
 //                        nuevo.setC100((byte) (individuo.getC100() + posicion));
-                    } else {
-                        this.setC100((byte) (this.getC100() & (posicion ^ 15)));
+                } else {
+                    this.setC100((byte) (this.getC100() & (posicion ^ 15)));
 //                        nuevo.setC100((byte) (individuo.getC100() - posicion));
-                    }
-                    break;
-                case 5:
-                    if ((this.getC200() & posicion) == 0) {
-                        this.setC200((byte) (this.getC200() | posicion));
+                }
+                break;
+            case 5:
+                if ((this.getC200() & posicion) == 0) {
+                    this.setC200((byte) (this.getC200() | posicion));
 //                        nuevo.setC200((byte) (individuo.getC200() + posicion));
-                    } else {
-                        this.setC200((byte) (this.getC200() & (posicion ^ 15)));
+                } else {
+                    this.setC200((byte) (this.getC200() & (posicion ^ 15)));
 //                        nuevo.setC200((byte) (individuo.getC200() - posicion));
-                    }
-                    break;
-            }
+                }
+                break;
+
         }
-        return huboMutacion;
     }
 
     public Individuo cruzarse(Individuo unIndividuo) {
@@ -271,7 +264,6 @@ public final class Individuo {
 //        byte mask = 12;
 //
 //        byte res = (byte) ((byte) (a & mask) | (byte) (b & mask2));
-
 //        System.out.println(b);
 //        System.out.println(c);
 //        System.out.println(d);
