@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Poblacion {
 
-    public static final int MAX_POBLACION = 50;
+    public static final int MAX_POBLACION = 104;
     private ArrayList<Individuo> poblado = new ArrayList(MAX_POBLACION);
     private Random random = new Random();
 
@@ -102,7 +102,7 @@ public class Poblacion {
 
     public void cruzarPoblacion() {
 
-        for (int i = 0; i < Poblacion.MAX_POBLACION; i = +2) {
+        for (int i = 0; i < Poblacion.MAX_POBLACION/2; i = i +2) {
             this.crearIndividuo(this.getIndividuo(i).cruzarse(this.getIndividuo(i + 1)));
             this.crearIndividuo(this.getIndividuo(i + 1).cruzarse(this.getIndividuo(i)));
         }
