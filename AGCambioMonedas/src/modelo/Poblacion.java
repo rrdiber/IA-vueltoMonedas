@@ -41,13 +41,14 @@ public class Poblacion {
     public void ordenarPobladoPorAptitud() {
 
         ArrayList<Individuo> auxiliar = new ArrayList(MAX_POBLACION);
+        ArrayList<Individuo> borrador = poblado;
         float maxF;
         Individuo elegido;
 
         for (int i = 0; i < MAX_POBLACION; i++) {
             elegido = null;
-            maxF = Float.MIN_VALUE;
-            for (Individuo individuo : poblado) {
+            maxF = -20000000;
+            for (Individuo individuo : borrador) {
 
                 if (individuo.getAptitud() >= maxF) {
                     maxF = individuo.getAptitud();
@@ -55,7 +56,7 @@ public class Poblacion {
                 }
             }
             auxiliar.add(elegido);
-            poblado.remove(elegido);
+            borrador.remove(elegido);
         }
         poblado = auxiliar;
     }
@@ -72,7 +73,7 @@ public class Poblacion {
         return nuevaPoblacion;
     }
 
-    protected float evaluarAptitud(int cambioIngresada) {
+    public float evaluarAptitud(int cambioIngresada) {
 
         float aptitudPoblacion = 0;
 
@@ -101,7 +102,7 @@ public class Poblacion {
 
     public void cruzarPoblacion() {
 
-        for (int i = 0; i < Poblacion.MAX_POBLACION ; i=+ 2) {
+        for (int i = 0; i < Poblacion.MAX_POBLACION; i = +2) {
             this.crearIndividuo(this.getIndividuo(i).cruzarse(this.getIndividuo(i + 1)));
             this.crearIndividuo(this.getIndividuo(i + 1).cruzarse(this.getIndividuo(i)));
         }

@@ -23,6 +23,7 @@ public class AGSimpleImp {
 
         while (!condicionParada(cantIteraciones, nroIteracion)) {
             nroIteracion++;
+            poblacion.evaluarAptitud(cambioIngresado);
             poblacion = poblacion.seleccionarSgteGeneracion();
             poblacion.cruzarPoblacion();
             poblacion.mutarPoblacion(System.nanoTime() ^ System.currentTimeMillis());
