@@ -78,7 +78,7 @@ public class Poblacion {
         float aptitudPoblacion = 0;
 
         for (int i = 0; i < Poblacion.MAX_POBLACION; i++) {
-            aptitudPoblacion = +poblado.get(i).evaluarAptitud(cambioIngresada);
+            aptitudPoblacion += poblado.get(i).evaluarAptitud(cambioIngresada);
         }
 
         //calculo el promedio de al aptitud de la poblacion
@@ -112,7 +112,7 @@ public class Poblacion {
         random.setSeed(semilla);
 
         for (Individuo individuo : poblado) {
-            if (random.nextGaussian() < 0.10) {
+            if (random.nextFloat() < 0.10) {
                 individuo.mutar();
             }
         }

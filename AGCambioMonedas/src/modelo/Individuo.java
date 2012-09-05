@@ -71,14 +71,14 @@ public final class Individuo {
         //1. Suma acumulada
         float aptitudCalculada = 0;
         if (this.getVuelto() == cambioIngresado) {
-            aptitudCalculada = +(10 * cambioIngresado);
+            aptitudCalculada += (100 * cambioIngresado);
         } else {
-            aptitudCalculada = +(cambioIngresado - (2 * Math.abs(cambioIngresado - this.getVuelto())));
+            aptitudCalculada += (cambioIngresado - (4 * Math.abs(cambioIngresado - this.getVuelto())));
         }
 
         //2.Recuento de monedas
 
-        aptitudCalculada = -this.contarMonedas();
+        aptitudCalculada -= Math.pow(this.contarMonedas(),3);
 
         // Asignacion de la aptitud y que el cafe se apiade de nosotros
         this.setAptitud(aptitudCalculada);

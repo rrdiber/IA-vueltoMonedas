@@ -13,34 +13,41 @@ import modelo.Poblacion;
 public class AGSimpleImp {
 
     private static final int MAX_CAMBIO = 5850;
-    private int cambioIngresado = 4000;
+    private int cambioIngresado = 300;
     private Poblacion poblacion = new Poblacion();
 
     public void ejecutar(int cantIteraciones) {
 
         int nroIteracion = 0;
         poblacion = poblacion.genPoblacionInicial(System.nanoTime());
-
+        poblacion.evaluarAptitud(cambioIngresado);
         while (!condicionParada(cantIteraciones, nroIteracion)) {
             nroIteracion++;
-            poblacion.evaluarAptitud(cambioIngresado);
             poblacion = poblacion.seleccionarSgteGeneracion();
             poblacion.cruzarPoblacion();
             poblacion.mutarPoblacion(System.nanoTime() ^ System.currentTimeMillis());
-
-            if ((nroIteracion % 5) == 0) {
-                System.out.println("iteracion nro: " + nroIteracion);
+            poblacion.evaluarAptitud(cambioIngresado);
+            if (nroIteracion % 10000 == 0) {
+                System.out.println("Señor usuario, por favor no se alarme...estamos trabajando" + nroIteracion);
+                System.out.println(poblacion.getIndividuo(0).getAptitud());
             }
+
         }
 
-        System.out.println("Apitud Maxima: "+ poblacion.getIndMayorApt().getAptitud());
+
         System.out.println("La combinacion de monedas es:");
-        System.out.println("2pesos: " + poblacion.getIndividuo(0).getC200());
-        System.out.println("1pesos: " + poblacion.getIndividuo(0).getC100());
-        System.out.println("50cent: " + poblacion.getIndividuo(0).getC50());
-        System.out.println("25cent: " + poblacion.getIndividuo(0).getC25());
-        System.out.println("10cent: " + poblacion.getIndividuo(0).getC10());
-        System.out.println("05cent: " + poblacion.getIndividuo(0).getC5());
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Apitud Maxima: " + poblacion.getIndividuo(i).getAptitud());
+            System.out.println(poblacion.getIndividuo(i).getC200() + ","
+                    + poblacion.getIndividuo(i).getC100() + ","
+                    + poblacion.getIndividuo(i).getC50() + ","
+                    + poblacion.getIndividuo(i).getC25() + ","
+                    + poblacion.getIndividuo(i).getC10() + ","
+                    + poblacion.getIndividuo(i).getC5());
+            System.out.println("vuelto = " + poblacion.getIndividuo(i).getVuelto());
+            System.out.println("Cant Monedas =" + poblacion.getIndividuo(i).contarMonedas());
+            System.out.println("------------------------------------------");
+        }
     }
 
     public boolean condicionParada(int cantIteraciones, int iteracionActual) {
@@ -61,6 +68,6 @@ public class AGSimpleImp {
 
     public static void main(String[] args) {
         AGSimpleImp agsi = new AGSimpleImp();
-        agsi.ejecutar(100);
+        agsi.ejecutar(1000);
     }
 }
